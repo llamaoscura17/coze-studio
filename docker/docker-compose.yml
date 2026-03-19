@@ -16,7 +16,7 @@ services:
     # ports:
     #   - '3306'
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - ../../files/data/mysql:/var/lib/mysql
       - ./volumes/mysql/schema.sql:/docker-entrypoint-initdb.d/init.sql
       - ./atlas/opencoze_latest_schema.hcl:/opencoze_latest_schema.hcl:ro
     entrypoint:
@@ -95,7 +95,7 @@ services:
     # ports:
     #   - '6379'
     volumes:
-      - ./data/bitnami/redis:/bitnami/redis/data:rw,Z
+      - ../../files/data/bitnami/redis:/bitnami/redis/data:rw,Z
     command: >
       bash -c "
         /opt/bitnami/scripts/redis/setup.sh
@@ -127,7 +127,7 @@ services:
     # ports:
     #   - '9200'
     volumes:
-      - ./data/bitnami/elasticsearch:/bitnami/elasticsearch/data
+      - ../../files/data/bitnami/elasticsearch:/bitnami/elasticsearch/data
       - ./volumes/elasticsearch/elasticsearch.yml:/opt/bitnami/elasticsearch/config/my_elasticsearch.yml
       - ./volumes/elasticsearch/analysis-smartcn.zip:/opt/bitnami/elasticsearch/analysis-smartcn.zip:rw,Z
       - ./volumes/elasticsearch/setup_es.sh:/setup_es.sh
@@ -211,7 +211,7 @@ services:
     #   - '9000'
     #   - '9001'
     volumes:
-      - ./data/minio:/data
+      - ../../files/data/minio:/data
       - ./volumes/minio/default_icon/:/default_icon
       - ./volumes/minio/official_plugin_icon/:/official_plugin_icon
     environment:
@@ -269,7 +269,7 @@ services:
     #   - '2379'
     #   - '2380'
     volumes:
-      - ./data/bitnami/etcd:/bitnami/etcd:rw,Z
+      - ../../files/data/bitnami/etcd:/bitnami/etcd:rw,Z
       - ./volumes/etcd/etcd.conf.yml:/opt/bitnami/etcd/conf/etcd.conf.yml:ro,Z
     command: >
       bash -c "
@@ -315,7 +315,7 @@ services:
       MINIO_USE_SSL: false
       LOG_LEVEL: debug
     volumes:
-      - ./data/milvus:/var/lib/milvus:rw,Z
+      - ../../files/data/milvus:/var/lib/milvus:rw,Z
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:9091/healthz']
       interval: 5s
